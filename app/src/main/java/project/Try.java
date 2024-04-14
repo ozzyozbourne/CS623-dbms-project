@@ -10,7 +10,7 @@ public final class Try {
 
         R compute() throws Exception;
 
-        static <R, E extends Exception> Result<R, E> apply(ThrowSupplier<R> tf, final Class<E> e) {
+        static <R, E extends Exception> Result<R, E> apply(final ThrowSupplier<R> tf, final Class<E> e) {
             Result<R, E> r;
             try {
                 r = new Result<>(tf.compute(), null);
@@ -26,7 +26,7 @@ public final class Try {
 
         void compute() throws Exception;
 
-        static <E extends Exception> ResultException<E> apply(ThrowConsumer tc, final Class<E> e){
+        static <E extends Exception> ResultException<E> apply(final ThrowConsumer tc, final Class<E> e){
             ResultException<E> r;
             try {
                 tc.compute();
