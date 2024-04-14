@@ -6,7 +6,6 @@ repositories {
     mavenCentral()
 }
 
-
 val agent: Configuration by configurations.creating {
     isCanBeConsumed = true
     isCanBeResolved = true
@@ -18,6 +17,7 @@ dependencies {
     testImplementation(platform(libs.allureBom))
     testImplementation("io.qameta.allure:allure-testng")
     testImplementation(libs.testng)
+    testImplementation(libs.slf4j)
 
     implementation(libs.postgres)
 }
