@@ -1,13 +1,13 @@
 ### Pace University
 
-Instructor: Prateik Chowdhary
+Instructor: Pratik Choudhari
 
 ---
 
 ## Team Members
 
 - Osaid Khan
-- Sharukh Saiyed
+- Shahrukh Saiyad
 - Rishabh Gada
 
 ---
