@@ -32,19 +32,20 @@ application {
     mainClass.set("project.App")
 }
 
+reporting.baseDir = file("reports/gradle")
 
 tasks.named<Test>("test") {
     jvmArgs = listOf(
         "-javaagent:${agent.singleFile}"
     )
-    useTestNG()
+    useTestNG{
+        isUseDefaultListeners = true
+        outputDirectory = file("$projectDir/reports/testng")
+    }
     testLogging {
         events("PASSED", "SKIPPED", "FAILED", "STANDARD_OUT", "STANDARD_ERROR")
     }
-}
 
-tasks.register("testReport") {
-    dependsOn("test")
     doLast {
         val buildDir = layout.buildDirectory.dir("allure-results").get().asFile
         buildDir.mkdirs()
@@ -55,6 +56,11 @@ tasks.register("testReport") {
         val javaVersion = System.getProperty("java.version")
 
         reportFile.writeText("Platform = $osName : $osVersion\nJava = $javaVersion\n")
-        println("Test report generated at: ${reportFile.absolutePath}")
     }
 }
+
+tasks.register("allure", Exec::class) {
+    commandLine("allure", "generate", "$projectDir/build/allure-results", "--report-dir", "reports/allure",   "--clean")
+}
+
+

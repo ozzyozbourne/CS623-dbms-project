@@ -1,7 +1,5 @@
 package project;
 
-
-import io.qameta.allure.Description;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -12,20 +10,22 @@ import java.sql.SQLException;
 import static org.testng.Assert.assertNull;
 import static project.Constants.*;
 
-public abstract class Base {
+abstract sealed class Base permits ConnectionTest,
+                                   DeleteData,
+                                   PopulateData,
+                                   Transactions {
 
-    protected final Try.Result<Connection, SQLException> result = Try.ThrowSupplier
+    final Try.Result<Connection, SQLException> CONN = Try.ThrowSupplier
             .apply(() -> DriverManager.getConnection(URL, USER, PASSWORD), SQLException.class);
 
-    @Description("Checking connection")
-    @BeforeTest
-    public void setUp() {
-        //assertNull(result.error());
+
+    @BeforeTest(description ="Checking connection" )
+    final void setUp() {
+        //assertNull(CONN.error());
     }
 
-    @Description("Closing connection")
-    @AfterTest
-    public void tearDown() {
-        //assertNull(Try.ThrowConsumer.apply(result.value()::close, SQLException.class).error());
+    @AfterTest(description = "Closing connection")
+    final void tearDown() {
+        //assertNull(Try.ThrowConsumer.apply(CONN.value()::close, SQLException.class).error());
     }
 }
