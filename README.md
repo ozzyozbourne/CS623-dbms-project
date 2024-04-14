@@ -32,7 +32,7 @@ This project implements transaction management in Postgres using Java. Transacti
 1. Clone this repository to your local machine.
 
     ```bash
-    git clone <https://github.com/ozzyozbourne/CS623-dbms-project>
+    git clone https://github.com/ozzyozbourne/CS623-dbms-project
     ```
 
 2. Set up your Postgres database.
