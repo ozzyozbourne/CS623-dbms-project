@@ -12,7 +12,7 @@ public final class ConnectionTest extends Base {
 
     @Test(description = "Transaction 1 By Osaid Khan")
     void doTransaction1(){
-        log("doTransaction1");
+        log("");
     }
 
     @Test(description = "Transaction 2 By Osaid Khan")

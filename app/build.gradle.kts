@@ -62,8 +62,5 @@ tasks.named<Test>("test") {
     }
 }
 
-tasks.register("allureReport", Exec::class) {
-    commandLine("allure", "generate", "$projectDir/build/allure-results", "--report-dir", "$projectDir/reports/allure",   "--clean")
-}
 
 
