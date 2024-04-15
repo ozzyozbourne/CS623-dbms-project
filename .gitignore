@@ -88,5 +88,5 @@ nb-configuration.xml
 ## Miscellaneous
 ##############################
 *.log
-allure-report
+connect.properties
 reports

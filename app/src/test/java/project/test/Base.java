@@ -1,7 +1,8 @@
-package project;
+package project.test;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import project.Try;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,9 +12,9 @@ import static org.testng.Assert.assertNull;
 import static project.Constants.*;
 
 abstract sealed class Base permits ConnectionTest,
-                                   DeleteData,
-                                   PopulateData,
-                                   Transactions {
+        DeleteData,
+        PopulateData,
+        Transactions {
 
     final Try.Result<Connection, SQLException> CONN = Try.ThrowSupplier
             .apply(() -> DriverManager.getConnection(URL, USER, PASSWORD), SQLException.class);
