@@ -1,10 +1,7 @@
-plugins {
-    application
-}
 
-repositories {
-    mavenCentral()
-}
+plugins { application }
+
+repositories { mavenCentral() }
 
 val agent: Configuration by configurations.creating {
     isCanBeConsumed = true
@@ -22,29 +19,35 @@ dependencies {
     implementation(libs.postgres)
 }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
-}
+java { toolchain { languageVersion.set(JavaLanguageVersion.of(21)) } }
 
-application {
-    mainClass.set("project.App")
-}
+application { mainClass.set("project.App") }
 
 reporting.baseDir = file("reports/gradle")
 
+tasks.register("cleanReports") {
+    doLast {
+        val reportsDir = File("$projectDir/reports")
+        if (reportsDir.exists()) {
+            reportsDir.deleteRecursively()
+            println("Deleted $projectDir/reports successfully")
+        }else{
+            println("$projectDir/reports not present")
+        }
+    }
+}
+
 tasks.named<Test>("test") {
-    jvmArgs = listOf(
-        "-javaagent:${agent.singleFile}"
-    )
+    dependsOn("cleanReports")
+    jvmArgs = listOf("-javaagent:${agent.singleFile}")
+
     useTestNG{
         isUseDefaultListeners = true
+        suites("src/test/resources/xmls/${providers.gradleProperty("TestngXml").get()}.xml")
         outputDirectory = file("$projectDir/reports/testng")
     }
-    testLogging {
-        events("PASSED", "SKIPPED", "FAILED", "STANDARD_OUT", "STANDARD_ERROR")
-    }
+
+    testLogging { events("PASSED", "SKIPPED", "FAILED", "STANDARD_OUT", "STANDARD_ERROR") }
 
     doLast {
         val buildDir = layout.buildDirectory.dir("allure-results").get().asFile
@@ -59,8 +62,8 @@ tasks.named<Test>("test") {
     }
 }
 
-tasks.register("allure", Exec::class) {
-    commandLine("allure", "generate", "$projectDir/build/allure-results", "--report-dir", "reports/allure",   "--clean")
+tasks.register("allureReport", Exec::class) {
+    commandLine("allure", "generate", "$projectDir/build/allure-results", "--report-dir", "$projectDir/reports/allure",   "--clean")
 }
 
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Delete Data In DB">
+
+    <test name="Drop Tables">
+        <classes>
+            <class name="project.DeleteData"/>
+        </classes>
+    </test>
+
+</suite>

@@ -4,12 +4,18 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Owner;
 import org.testng.annotations.*;
 
+import static project.Constants.*;
+
 @Epic("CS 623 Project")
 @Owner("Team 1")
 public final class ConnectionTest extends Base {
 
     @Test(description = "Transaction 1 By Osaid Khan")
-    void doTransaction1(){}
+    void doTransaction1(){
+        System.out.println(URL);
+        System.out.println(PASSWORD);
+        System.out.println(USER);
+    }
 
     @Test(description = "Transaction 2 By Osaid Khan")
     void doTransaction2(){}
