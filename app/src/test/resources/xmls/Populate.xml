@@ -4,7 +4,7 @@
 
     <test name="Assignment 2 Data">
         <classes>
-            <class name="project.PopulateData"/>
+            <class name="project.ConnectionTest"/>
         </classes>
     </test>
 
