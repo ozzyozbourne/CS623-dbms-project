@@ -1,7 +1,8 @@
-package project;
+package project.utils;
 
 import io.qameta.allure.Allure;
 import org.testng.Reporter;
+import project.Try;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,10 +1,10 @@
-package project;
+package project.test;
 
 import io.qameta.allure.Epic;
 import io.qameta.allure.Owner;
 import org.testng.annotations.*;
 
-import static project.CustomLogger.log;
+import static project.utils.CustomLogger.log;
 
 @Epic("CS 623 Project")
 @Owner("Team 1")
