@@ -33,7 +33,6 @@ public final class CustomLogger {
         }
         final Try.Result<FileHandler, IOException> res =  Try.ThrowSupplier
                 .apply(() -> new FileHandler(Paths.get(System.getProperty("user.dir"),"reports", "java", "log.txt").toString()), IOException.class);
-
         if(res.error() != null) System.out.println("Logger Error: " + res.error().getMessage());
         res.value().setFormatter( new SimpleFormatter());
         return res.value();
