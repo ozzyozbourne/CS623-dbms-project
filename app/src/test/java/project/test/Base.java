@@ -14,7 +14,9 @@ import static project.Constants.*;
 abstract sealed class Base permits ConnectionTest,
                                    DeleteData,
                                    PopulateData,
-                                   Transactions {
+                                   Transactions,
+                                   CreateTables,
+                                   DropTables{
 
     final Try.Result<Connection, SQLException> CONN = Try.ThrowSupplier
             .apply(() -> DriverManager.getConnection(URL, USER, PASSWORD), SQLException.class);
