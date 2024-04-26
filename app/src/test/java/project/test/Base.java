@@ -12,9 +12,9 @@ import static org.testng.Assert.assertNull;
 import static project.Constants.*;
 
 abstract sealed class Base permits ConnectionTest,
-        DeleteData,
-        PopulateData,
-        Transactions {
+                                   DeleteData,
+                                   PopulateData,
+                                   Transactions {
 
     final Try.Result<Connection, SQLException> CONN = Try.ThrowSupplier
             .apply(() -> DriverManager.getConnection(URL, USER, PASSWORD), SQLException.class);
@@ -22,11 +22,11 @@ abstract sealed class Base permits ConnectionTest,
 
     @BeforeTest(description ="Checking connection" )
     final void setUp() {
-        //assertNull(CONN.error());
+        assertNull(CONN.error());
     }
 
     @AfterTest(description = "Closing connection")
     final void tearDown() {
-        //assertNull(Try.ThrowConsumer.apply(CONN.value()::close, SQLException.class).error());
+        assertNull(Try.ThrowConsumer.apply(CONN.value()::close, SQLException.class).error());
     }
 }
