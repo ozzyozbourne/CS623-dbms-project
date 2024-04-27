@@ -4,7 +4,7 @@
 
     <test name="Delete tables">
         <classes>
-            <class name="project.test.CreateTables"/>
+            <class name="project.test.DropTables"/>
         </classes>
     </test>
 
