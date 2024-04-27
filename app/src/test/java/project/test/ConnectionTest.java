@@ -1,48 +1,23 @@
 package project.test;
 
 import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.testng.annotations.*;
+import project.Try;
 
-import static project.utils.CustomLogger.log;
+import java.sql.SQLException;
+
+import static org.testng.Assert.assertFalse;
 
 @Epic("CS 623 Project")
 @Owner("Team 1")
+@Feature("Testing AWS DB connection is working properly")
 public final class ConnectionTest extends Base {
 
-    @Test(description = "Transaction 1 By Osaid Khan")
-    void doTransaction1(){
-        log("");
-    }
-
-    @Test(description = "Transaction 2 By Osaid Khan")
-    void doTransaction2(){
-        log("doTransaction2");
-
-    }
-
-    @Test(description = "Transaction 3 By Rishabh Gada")
-    void doTransaction3(){
-        log("doTransaction3");
-
-    }
-
-    @Test(description = "Transaction 4 By Rishabh Gada")
-    void doTransaction4(){
-        log("doTransaction4");
-
-    }
-
-    @Test(description = "Transaction 5 By Sharukh Saiyed")
-    void doTransaction5(){
-        log("doTransaction5");
-
-    }
-
-    @Test(description = "Transaction 6 By Sharukh Saiyed")
-    void doTransaction6(){
-        log("doTransaction6");
-
+    @Test(description = "Checking to see if connection is established")
+    void testConnection(){
+        assertFalse(Try.ThrowSupplier.apply(() -> CONN.value().isClosed(), SQLException.class).value());
     }
 
 }
