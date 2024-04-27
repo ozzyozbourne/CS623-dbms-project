@@ -8,7 +8,6 @@ import project.Try;
 
 import java.sql.SQLException;
 
-import static org.testng.Assert.*;
 import static project.Constants.*;
 import static project.utils.CustomLogger.log;
 
