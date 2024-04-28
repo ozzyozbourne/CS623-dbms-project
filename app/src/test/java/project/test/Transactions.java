@@ -17,13 +17,15 @@ import static project.utils.CustomLogger.log;
 @Feature("Assigned Transactions")
 public final class Transactions extends Base {
 
+    Try.ThrowSupplier<ResultSet> s1 =  () -> STMT.executeQuery("SELECT * FROM Depot");
+    Try.ThrowSupplier<ResultSet> s2 =  () -> STMT.executeQuery("SELECT * FROM Product");
+    Try.ThrowSupplier<ResultSet> s3 =  () -> STMT.executeQuery("SELECT * FROM Stock");
+
     @Test(description = "Transaction 1 By Osaid Khan")
     void doTransaction1(){
-       Try.ThrowSupplier<ResultSet> ss =  () -> STMT.executeQuery("SELECT * FROM Product");
-       var res = Try.ThrowSupplier.apply(ss, SQLException.class);
-       if(res.error() != null) System.out.println("sdjskjdbv");
-       log(DB.getResultSetString(res.value()));
-
+       log(DB.getResultSetString(Try.ThrowSupplier.apply(s1, SQLException.class).value()));
+       log(DB.getResultSetString(Try.ThrowSupplier.apply(s2, SQLException.class).value()));
+       log(DB.getResultSetString(Try.ThrowSupplier.apply(s3, SQLException.class).value()));
     }
 
     @Test(description = "Transaction 2 By Osaid Khan")
