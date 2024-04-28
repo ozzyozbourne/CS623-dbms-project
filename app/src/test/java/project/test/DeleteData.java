@@ -16,7 +16,19 @@ import static project.utils.CustomLogger.log;
 @Feature("Deleting all the data present in all the tables")
 public final class DeleteData extends Base {
 
-    @Test(description = "Deleting all data from table Product")
+
+    @Test(description = "Deleting all data from table Stock")
+    void deleteAllDataFromStockTable(){
+        log("Deleting all data from table Stock");
+        log(DELETE_TABLE_STOCK);
+        final Try.Result<Boolean, SQLException> res = Try
+                .ThrowSupplier
+                .apply(() -> STMT.execute(DELETE_TABLE_STOCK), SQLException.class);
+        db.rollbackOnError(res, "Unable to Delete data from table Stock");
+        log("Deleted all data from Table Stock Successfully");
+    }
+
+    @Test(description = "Deleting all data from table Product", dependsOnMethods = "deleteAllDataFromStockTable")
     void deleteAllDataFromProductTable(){
         log("Deleting all data from table Product");
         log(DELETE_TABLE_PRODUCT);
@@ -38,14 +50,5 @@ public final class DeleteData extends Base {
         log("Deleted all data from Table Depot Successfully");
     }
 
-    @Test(description = "Deleting all data from table Stock", dependsOnMethods = "deleteAllDataFromDepotTable")
-    void deleteAllDataFromStockTable(){
-        log("Deleting all data from table Stock");
-        log(DELETE_TABLE_STOCK);
-        final Try.Result<Boolean, SQLException> res = Try
-                .ThrowSupplier
-                .apply(() -> STMT.execute(DELETE_TABLE_STOCK), SQLException.class);
-        db.rollbackOnError(res, "Unable to Delete data from table Stock");
-        log("Deleted all data from Table Stock Successfully");
-    }
+
 }

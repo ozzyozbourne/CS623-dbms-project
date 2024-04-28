@@ -2,10 +2,9 @@ package project.utils;
 
 import project.Try;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.sql.Connection.TRANSACTION_SERIALIZABLE;
 import static java.sql.ResultSet.CONCUR_READ_ONLY;
@@ -14,13 +13,13 @@ import static org.testng.Assert.assertNull;
 import static project.Constants.*;
 import static project.utils.CustomLogger.log;
 
-public final class DB {
-
+public enum DB {
+    INSTANCE;
     private final Try.Result<Connection, SQLException> CONN;
 
     private final Try.Result<Statement, SQLException> stmt;
 
-    public DB(){
+    DB(){
         this.CONN = Try.ThrowSupplier.apply(() -> DriverManager.getConnection(URL, USER, PASSWORD), SQLException.class);
         checkConnection();
         setAutocommitOff();
@@ -84,5 +83,51 @@ public final class DB {
         assertNull(Try.ThrowConsumer.apply(stmt.value()::close, SQLException.class).error());
         assertNull(Try.ThrowConsumer.apply(CONN.value()::close, SQLException.class).error());
         log("Connection Closed Successfully");
+    }
+
+    public static String getResultSetString(final ResultSet resultSet) {
+        final StringBuilder builder = new StringBuilder();
+        try {
+            final ResultSetMetaData resultMetaData = resultSet.getMetaData();
+            final int columnCount = resultMetaData.getColumnCount();
+            final List<Integer> columnSize = new ArrayList<>(columnCount);
+            List<String> valuesRow = new ArrayList<>();
+            final List<List<String>> valuesCol = new ArrayList<>();
+
+            for(int i = 0; i < columnCount; i++) {
+                final String resColName = resultMetaData.getColumnName(i+1).trim();
+                columnSize.add(resColName.length());
+                valuesRow.add(resColName);
+            }
+
+            valuesCol.add(valuesRow);
+            int rowCount = 1; //the zeroth row has the tile has the values will start from 1
+            resultSet.beforeFirst();
+
+            while (resultSet.next()) {
+                rowCount += 1;
+                valuesRow = new ArrayList<>();
+
+                for(int i = 0; i < columnCount; i++) {
+                    final String value = resultSet.getString(i + 1).trim();
+                    columnSize.set(i,Math.max(value.length(), columnSize.get(i)));
+                    valuesRow.add(value);
+                }
+                valuesCol.add(valuesRow);
+            }
+
+            builder.append("\n");
+            for(int i = 0; i < rowCount; i++){
+                for(int j = 0; j < columnCount; j++){
+                    if(j == columnCount -1 )
+                        builder.append(String.format("| %-"+columnSize.get(j)+"s |", valuesCol.get(i).get(j)));
+                    else
+                        builder.append(String.format("| %-"+columnSize.get(j)+"s ", valuesCol.get(i).get(j)));
+                }
+                if(i != rowCount -1)builder.append("\n");
+            }
+        }
+        catch (SQLException e) {return "Error:- " + e.getMessage();}
+        return builder.toString();
     }
 }

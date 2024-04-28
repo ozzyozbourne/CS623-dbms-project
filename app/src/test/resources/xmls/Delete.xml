@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Delete Data In DB">
 
-    <test name="Drop Tables">
+    <test name="Delete data in Tables">
         <classes>
             <class name="project.test.DeleteData"/>
         </classes>
