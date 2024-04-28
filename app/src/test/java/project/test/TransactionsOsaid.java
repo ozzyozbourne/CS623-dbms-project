@@ -4,6 +4,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import project.Try;
@@ -65,6 +66,11 @@ public final class TransactionsOsaid {
     void setUpTestClass(){
         this.db = DB.INSTANCE;
         this.STMT = db.getStatement();
+    }
+
+    @BeforeSuite(description = "Setting up connection singleton")
+    final void setUpConnectionSingleton(){
+        var init =  DB.INSTANCE; // init variable required, since java doesn't allow _ = DB.INSTANCE
     }
 
     @AfterSuite(description = "closing connection singleton")

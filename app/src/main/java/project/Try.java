@@ -5,6 +5,8 @@ public final class Try {
     public record Result<R, E extends Exception>(R value, E error){}
     public record ResultException<E extends Exception>(E error){}
 
+    private Try(){}
+
     @FunctionalInterface
     public interface ThrowSupplier<R>  {
 

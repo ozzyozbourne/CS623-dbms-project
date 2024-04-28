@@ -1,15 +1,10 @@
 package project.test;
 
 import org.testng.annotations.*;
-import project.Try;
 import project.utils.DB;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Statement;
-
-import static project.utils.CustomLogger.log;
-
 
 abstract sealed class Base permits ConnectionTest,
                                    DeleteData,

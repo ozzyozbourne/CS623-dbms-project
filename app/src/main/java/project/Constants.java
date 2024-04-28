@@ -107,6 +107,10 @@ public interface Constants {
             	('p2', 'd1', -400),
             	('p2', 'd2', 2000);""";
 
+    String ALL_PRODUCTS = "SELECT * FROM Product";
+    String ALL_DEPOTS = "SELECT * FROM Stock";
+    String ALL_STOCK = "SELECT * FROM Depot";
+
     String URL = getProp("URL");
     String USER = getProp("USER");
     String PASSWORD = getProp("PASSWORD");

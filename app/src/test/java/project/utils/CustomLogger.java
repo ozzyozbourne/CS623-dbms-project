@@ -12,7 +12,11 @@ import java.sql.Statement;
 import java.util.function.Consumer;
 import java.util.logging.*;
 
+import static project.Constants.*;
+
 public final class CustomLogger {
+
+    private CustomLogger() {}
 
     private static final Logger log = Logger.getLogger("");
     private static final Consumer<String> TESTNG_INFO = msg -> Reporter.log("[INFO] " + msg, true);
@@ -44,19 +48,19 @@ public final class CustomLogger {
 
     public static void logCurrentStateOfTableProduct(final Statement STMT){
         log(DB.getResultSetString(Try
-                .ThrowSupplier.apply(() -> STMT.executeQuery("SELECT * FROM Product"), SQLException.class)
+                .ThrowSupplier.apply(() -> STMT.executeQuery(ALL_PRODUCTS), SQLException.class)
                 .value()));
     }
 
     public static void logCurrentStateOfTableStock(final Statement STMT){
         log(DB.getResultSetString(Try
-                .ThrowSupplier.apply(() -> STMT.executeQuery("SELECT * FROM Stock"), SQLException.class)
+                .ThrowSupplier.apply(() -> STMT.executeQuery(ALL_DEPOTS), SQLException.class)
                 .value()));
     }
 
     public static void logCurrentStateOfTableDepot(final Statement STMT){
         log(DB.getResultSetString(Try
-                .ThrowSupplier.apply(() -> STMT.executeQuery("SELECT * FROM Depot"), SQLException.class)
+                .ThrowSupplier.apply(() -> STMT.executeQuery(ALL_STOCK), SQLException.class)
                 .value()));
     }
 
