@@ -25,6 +25,7 @@ This project implements transaction management in Postgres using Java. Transacti
 - Postgres database
 - JDBC driver for Postgres
 - Make (Optional)
+- Allure Reporting Framework
 
 ---
 
