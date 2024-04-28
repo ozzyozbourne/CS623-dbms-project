@@ -42,9 +42,7 @@ This project implements transaction management in Postgres using Java. Transacti
 
 4. Open the project in your preferred Java IDE.
 
-5. Configure your database connection in the Java code.
-
-6. Add a file named `connect.properties` in `main/resources` with the following format:
+5. Add a file named `connect.properties` in `main/resources` with the following format:
 
     ```
     URL=<enter value>
