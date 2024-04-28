@@ -47,7 +47,7 @@ public final class TransactionsOsaid {
     @Test(description = "Transaction 2")
     void doTransaction2(){
         log("State of tables Depot and Stock before transaction 2");
-        logCurrentStateOfTableProduct(STMT);
+        logCurrentStateOfTableDepot(STMT);
         logCurrentStateOfTableStock(STMT);
 
         log(TRANSACTION_2);
@@ -57,9 +57,8 @@ public final class TransactionsOsaid {
 
         this.db.commitTransactions();
         log("State of tables Depot and Stock after transaction 2");
-        logCurrentStateOfTableProduct(STMT);
+        logCurrentStateOfTableDepot(STMT);
         logCurrentStateOfTableStock(STMT);
-
     }
 
     @BeforeTest(description = "Feeding test instances reference to singleton connection")

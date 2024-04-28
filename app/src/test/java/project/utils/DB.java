@@ -101,7 +101,7 @@ public enum DB {
             }
 
             valuesCol.add(valuesRow);
-            int rowCount = 0;
+            int rowCount = 1; //the zeroth row has the tile has the values will start from 1
             resultSet.beforeFirst();
 
             while (resultSet.next()) {
