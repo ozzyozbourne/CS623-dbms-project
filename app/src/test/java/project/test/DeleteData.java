@@ -9,7 +9,6 @@ import project.Try;
 import java.sql.SQLException;
 
 import static project.Constants.*;
-import static project.Constants.DROP_TABLE_STOCK;
 import static project.utils.CustomLogger.log;
 
 @Epic("CS 623 Project")
@@ -23,8 +22,8 @@ public final class DeleteData extends Base {
         log(DELETE_TABLE_PRODUCT);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(DELETE_TABLE_PRODUCT), SQLException.class);
-        checkForErrors(res, "Unable to Delete data from table Product");
+                .apply(() -> STMT.execute(DELETE_TABLE_PRODUCT), SQLException.class);
+        db.rollbackOnError(res, "Unable to Delete data from table Product");
         log("Deleted all data from Product Table Successfully");
     }
 
@@ -34,8 +33,8 @@ public final class DeleteData extends Base {
         log(DELETE_TABLE_DEPOT);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(DELETE_TABLE_DEPOT), SQLException.class);
-        checkForErrors(res, "Unable to Delete data from table Depot");
+                .apply(() -> STMT.execute(DELETE_TABLE_DEPOT), SQLException.class);
+        db.rollbackOnError(res, "Unable to Delete data from table Depot");
         log("Deleted all data from Table Depot Successfully");
     }
 
@@ -45,8 +44,8 @@ public final class DeleteData extends Base {
         log(DELETE_TABLE_STOCK);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(DELETE_TABLE_STOCK), SQLException.class);
-        checkForErrors(res, "Unable to Delete data from table Stock");
+                .apply(() -> STMT.execute(DELETE_TABLE_STOCK), SQLException.class);
+        db.rollbackOnError(res, "Unable to Delete data from table Stock");
         log("Deleted all data from Table Stock Successfully");
     }
 }

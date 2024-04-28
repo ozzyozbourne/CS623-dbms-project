@@ -9,7 +9,6 @@ import project.Try;
 import java.sql.SQLException;
 
 import static project.Constants.*;
-import static project.Constants.DROP_TABLE_STOCK;
 import static project.utils.CustomLogger.log;
 
 @Epic("CS 623 Project")
@@ -23,8 +22,8 @@ public final class PopulateData extends Base {
         log(POPULATE_PRODUCT);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(POPULATE_PRODUCT), SQLException.class);
-        checkForErrors(res, "Unable to populate table Product");
+                .apply(() -> STMT.execute(POPULATE_PRODUCT), SQLException.class);
+        db.rollbackOnError(res, "Unable to populate table Product");
         log("Populated Product Table Successfully");
     }
 
@@ -34,8 +33,8 @@ public final class PopulateData extends Base {
         log(POPULATE_DEPOT);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(POPULATE_DEPOT), SQLException.class);
-        checkForErrors(res, "Unable to populate table Depot");
+                .apply(() -> STMT.execute(POPULATE_DEPOT), SQLException.class);
+        db.rollbackOnError(res, "Unable to populate table Depot");
         log("Populated Depot Table Successfully");
     }
 
@@ -45,8 +44,8 @@ public final class PopulateData extends Base {
         log(POPULATE_STOCK);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(POPULATE_STOCK), SQLException.class);
-        checkForErrors(res, "Unable to populate table Stock");
+                .apply(() -> STMT.execute(POPULATE_STOCK), SQLException.class);
+        db.rollbackOnError(res, "Unable to populate table Stock");
         log("Populated Stock Table Successfully");
     }
 }

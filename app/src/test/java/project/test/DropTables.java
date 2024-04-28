@@ -22,8 +22,8 @@ public final class DropTables extends Base{
         log(DROP_TABLE_PRODUCT);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(DROP_TABLE_PRODUCT), SQLException.class);
-        checkForErrors(res, "Unable to drop table Product");
+                .apply(() -> STMT.execute(DROP_TABLE_PRODUCT), SQLException.class);
+        db.rollbackOnError(res, "Unable to drop table Product");
         log("Dropped Product Table Successfully");
     }
 
@@ -33,8 +33,8 @@ public final class DropTables extends Base{
         log(DROP_TABLE_DEPOT);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(DROP_TABLE_DEPOT), SQLException.class);
-        checkForErrors(res, "Unable to drop table Depot");
+                .apply(() -> STMT.execute(DROP_TABLE_DEPOT), SQLException.class);
+        db.rollbackOnError(res, "Unable to drop table Depot");
         log("Dropped Depot Table Successfully");
     }
 
@@ -44,8 +44,8 @@ public final class DropTables extends Base{
         log(DROP_TABLE_STOCK);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
-                .apply(() -> stmt.value().execute(DROP_TABLE_STOCK), SQLException.class);
-        checkForErrors(res, "Unable to drop table Stock");
+                .apply(() -> STMT.execute(DROP_TABLE_STOCK), SQLException.class);
+        db.rollbackOnError(res, "Unable to drop table Stock");
         log("Dropped Stock Table Successfully");
     }
 }
