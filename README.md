@@ -54,9 +54,9 @@ This project implements transaction management in Postgres using Java. Transacti
 
 To run the tests for transactions, use the following Makefile commands for each test:
 
-- To run tests for Osaid: `make ok`
-- To run tests for Rishabh: `make rg`
-- To run tests for Shahrukh: `make ss`
+- To run tests for User Osaid: `make ok`
+- To run tests for User Rishabh: `make rg`
+- To run tests for User Shahrukh: `make ss`
 
 To generate the Allure test report, run `make` or `make report`.
 
