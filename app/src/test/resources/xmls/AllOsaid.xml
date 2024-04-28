@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Create Populate Transactions Delete Drop">
+<suite name="Create Populate Transactions Delete Drop For User Osaid">
 
     <test name="Create tables">
         <classes>
@@ -16,7 +16,7 @@
 
     <test name="Transactions">
         <classes>
-            <class name="project.test.Transactions"/>
+            <class name="project.test.TransactionsOsaid"/>
         </classes>
     </test>
 

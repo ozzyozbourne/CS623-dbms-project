@@ -2,9 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="DB Transactions ">
 
-    <test name="Six Transactions">
+    <test name="Test Transactions">
         <classes>
-            <class name="project.test.Transactions"/>
+            <class name="project.test.TransactionsOsaid"/>
         </classes>
     </test>
 

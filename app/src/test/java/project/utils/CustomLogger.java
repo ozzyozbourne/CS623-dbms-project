@@ -7,6 +7,8 @@ import project.Try;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.function.Consumer;
 import java.util.logging.*;
 
@@ -39,5 +41,23 @@ public final class CustomLogger {
     }
 
     public static void log(final String msg) {TESTNG_INFO.andThen(ALLURE_INFO).andThen(LOG_INFO).accept(msg);}
+
+    public static void logCurrentStateOfTableProduct(final Statement STMT){
+        log(DB.getResultSetString(Try
+                .ThrowSupplier.apply(() -> STMT.executeQuery("SELECT * FROM Product"), SQLException.class)
+                .value()));
+    }
+
+    public static void logCurrentStateOfTableStock(final Statement STMT){
+        log(DB.getResultSetString(Try
+                .ThrowSupplier.apply(() -> STMT.executeQuery("SELECT * FROM Stock"), SQLException.class)
+                .value()));
+    }
+
+    public static void logCurrentStateOfTableDepot(final Statement STMT){
+        log(DB.getResultSetString(Try
+                .ThrowSupplier.apply(() -> STMT.executeQuery("SELECT * FROM Depot"), SQLException.class)
+                .value()));
+    }
 
 }

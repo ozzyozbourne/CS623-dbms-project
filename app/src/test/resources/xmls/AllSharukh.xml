@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Create Populate Transactions Delete Drop For User Sharukh">
+
+    <test name="Create tables">
+        <classes>
+            <class name="project.test.CreateTables"/>
+        </classes>
+    </test>
+
+    <test name="Populate Data">
+        <classes>
+            <class name="project.test.PopulateData"/>
+        </classes>
+    </test>
+
+    <test name="Transactions">
+        <classes>
+            <class name="project.test.TransactionsSharukh"/>
+        </classes>
+    </test>
+
+    <test name="Delete Tables">
+        <classes>
+            <class name="project.test.DeleteData"/>
+        </classes>
+    </test>
+
+    <test name="Drop tables">
+        <classes>
+            <class name="project.test.DropTables"/>
+        </classes>
+    </test>
+
+</suite>
