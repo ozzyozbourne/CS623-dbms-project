@@ -5,8 +5,10 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import project.Try;
+import project.utils.DB;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static project.utils.CustomLogger.log;
 
@@ -17,7 +19,11 @@ public final class Transactions extends Base {
 
     @Test(description = "Transaction 1 By Osaid Khan")
     void doTransaction1(){
-       Try.ThrowSupplier<ResultSet> ss =  () -> STMT.executeQuery("SELECT * FROM Products");
+       Try.ThrowSupplier<ResultSet> ss =  () -> STMT.executeQuery("SELECT * FROM Product");
+       var res = Try.ThrowSupplier.apply(ss, SQLException.class);
+       if(res.error() != null) System.out.println("sdjskjdbv");
+       log(DB.getResultSetString(res.value()));
+
     }
 
     @Test(description = "Transaction 2 By Osaid Khan")
