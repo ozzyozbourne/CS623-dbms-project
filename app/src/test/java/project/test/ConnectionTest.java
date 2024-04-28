@@ -17,7 +17,7 @@ public final class ConnectionTest extends Base {
 
     @Test(description = "Checking to see if connection is established")
     void testConnection(){
-        assertFalse(Try.ThrowSupplier.apply(() -> CONN.value().isClosed(), SQLException.class).value());
+        assertFalse(Try.ThrowSupplier.apply(() -> CONN.isClosed(), SQLException.class).value());
     }
 
 }

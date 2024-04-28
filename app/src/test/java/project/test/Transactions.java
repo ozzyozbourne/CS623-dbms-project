@@ -6,7 +6,7 @@ import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import project.Try;
 
-import java.sql.SQLException;
+import java.sql.ResultSet;
 
 import static project.utils.CustomLogger.log;
 
@@ -17,7 +17,7 @@ public final class Transactions extends Base {
 
     @Test(description = "Transaction 1 By Osaid Khan")
     void doTransaction1(){
-        log("doTransaction1");
+       Try.ThrowSupplier<ResultSet> ss =  () -> STMT.executeQuery("SELECT * FROM Products");
     }
 
     @Test(description = "Transaction 2 By Osaid Khan")
