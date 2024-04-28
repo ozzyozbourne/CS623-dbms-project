@@ -1,0 +1,4 @@
+Add a file property file here named "connect.properties" with values as mention below inorder to connect to the database
+URL=<enter value>
+USER=<enter value>
+PASSWORD=<enter value>
