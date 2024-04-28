@@ -21,9 +21,10 @@ This project implements transaction management in Postgres using Java. Transacti
 ## Requirements
 
 - Java Development Kit (JDK)
-- Gradle build tool
+- Gradle build tool (Optional)
 - Postgres database
 - JDBC driver for Postgres
+- Make (Optional)
 
 ---
 
@@ -41,25 +42,23 @@ This project implements transaction management in Postgres using Java. Transacti
 
 4. Open the project in your preferred Java IDE.
 
-5. Configure your database connection in the Java code.
+5. Add a file named `connect.properties` in `main/resources` with the following format:
 
-6. Build the project using Gradle.
-
-    ```bash
-    gradle build
     ```
-
+    URL=<enter value>
+    USER=<enter value>
+    PASSWORD=<enter value>
+    ```
 ---
+## Testing Transactions
 
-## Usage
+To run the tests for transactions, use the following Makefile commands for each test:
 
-1. Run the Java application.
+- To run tests for Osaid: `make ok`
+- To run tests for Rishabh: `make rg`
+- To run tests for Shahrukh: `make ss`
 
-    ```bash
-    gradle run
-    ```
-
-2. Follow the instructions to perform transactions in the Postgres database.
+To generate the Allure test report, run `make` or `make report`.
 
 ---
 
@@ -72,3 +71,8 @@ For any issues or questions, please feel free to contact any of the team members
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+
+
