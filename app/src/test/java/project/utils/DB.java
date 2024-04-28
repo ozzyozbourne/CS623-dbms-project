@@ -91,8 +91,8 @@ public enum DB {
             final ResultSetMetaData resultMetaData = resultSet.getMetaData();
             final int columnCount = resultMetaData.getColumnCount();
             final List<Integer> columnSize = new ArrayList<>(columnCount);
-            List<String> valuesRow = new ArrayList<>();
             final List<List<String>> valuesCol = new ArrayList<>();
+            List<String> valuesRow = new ArrayList<>();
 
             for(int i = 0; i < columnCount; i++) {
                 final String resColName = resultMetaData.getColumnName(i+1).trim();
@@ -104,11 +104,13 @@ public enum DB {
             int rowCount = 1; //the zeroth row has the tile hence row values will start from 1
             resultSet.beforeFirst();
 
-            while (resultSet.next()) {
+            while (resultSet.next())
+            {
                 rowCount += 1;
                 valuesRow = new ArrayList<>();
 
-                for(int i = 0; i < columnCount; i++) {
+                for(int i = 0; i < columnCount; i++)
+                {
                     final String value = resultSet.getString(i + 1).trim();
                     columnSize.set(i,Math.max(value.length(), columnSize.get(i)));
                     valuesRow.add(value);
@@ -116,9 +118,11 @@ public enum DB {
                 valuesCol.add(valuesRow);
             }
 
-            builder.append("\n");
-            for(int i = 0; i < rowCount; i++){
-                for(int j = 0; j < columnCount; j++){
+            builder.append("\n"); // print the table on a new line
+            for(int i = 0; i < rowCount; i++)
+            {
+                for(int j = 0; j < columnCount; j++)
+                {
                     if(j == columnCount -1 )
                         builder.append(String.format("| %-"+columnSize.get(j)+"s |", valuesCol.get(i).get(j)));
                     else

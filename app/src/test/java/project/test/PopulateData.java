@@ -19,33 +19,39 @@ public final class PopulateData extends Base {
     @Test(description = "Populating table Product")
     void populateProductTable(){
         log("populating table Product");
+
         log(POPULATE_PRODUCT);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(POPULATE_PRODUCT), SQLException.class);
         db.rollbackOnError(res, "Unable to populate table Product");
+
         log("Populated Product Table Successfully");
     }
 
     @Test(description = "Populating table Depot", dependsOnMethods = "populateProductTable")
     void populateDepotTable(){
         log("populating table Depot");
+
         log(POPULATE_DEPOT);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(POPULATE_DEPOT), SQLException.class);
         db.rollbackOnError(res, "Unable to populate table Depot");
+
         log("Populated Depot Table Successfully");
     }
 
     @Test(description = "Populating table Stock", dependsOnMethods = "populateDepotTable")
     void populateStockTable(){
         log("populating table Stock");
+
         log(POPULATE_STOCK);
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(POPULATE_STOCK), SQLException.class);
         db.rollbackOnError(res, "Unable to populate table Stock");
+
         log("Populated Stock Table Successfully");
     }
 }
