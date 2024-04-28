@@ -13,13 +13,13 @@ import static org.testng.Assert.assertNull;
 import static project.Constants.*;
 import static project.utils.CustomLogger.log;
 
-public final class DB {
-
+public enum DB {
+    INSTANCE;
     private final Try.Result<Connection, SQLException> CONN;
 
     private final Try.Result<Statement, SQLException> stmt;
 
-    public DB(){
+    DB(){
         this.CONN = Try.ThrowSupplier.apply(() -> DriverManager.getConnection(URL, USER, PASSWORD), SQLException.class);
         checkConnection();
         setAutocommitOff();
