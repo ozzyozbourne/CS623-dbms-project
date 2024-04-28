@@ -1,6 +1,6 @@
 ### Pace University
 
-Instructor: Pratik Choudhari
+Instructor: Pratik Chaudhari
 
 ---
 
