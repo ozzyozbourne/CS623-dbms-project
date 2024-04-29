@@ -68,21 +68,21 @@ public enum DB {
         log("Committed transactions Successfully");
     }
 
-    public void rollbackOnError(final Try.Result<Boolean, SQLException> res, final String runtimeExceptionMessage){
+    public static <V, E extends Exception> void rollbackOnError(final Try.Result<V, E> res, final String runtimeExceptionMessage){
         if(res.error() != null) {
             log("Error: " + res.error());
             log("Rolling back transaction");
-            assertNull(Try.ThrowConsumer.apply(() -> CONN.value().rollback(), SQLException.class).error());
+            assertNull(Try.ThrowConsumer.apply(() -> DB.INSTANCE.CONN.value().rollback(), SQLException.class).error());
             log("Rolled back transaction Successfully");
             throw new RuntimeException(runtimeExceptionMessage);
         }
     }
 
-    public void rollbackOnError(final Try.ResultException<SQLException> res, final String runtimeExceptionMessage){
+    public static <E extends Exception> void rollbackOnError(final Try.ResultException<E> res, final String runtimeExceptionMessage){
         if(res.error() != null) {
             log("Error: " + res.error());
             log("Rolling back transaction");
-            assertNull(Try.ThrowConsumer.apply(() -> CONN.value().rollback(), SQLException.class).error());
+            assertNull(Try.ThrowConsumer.apply(() -> DB.INSTANCE.CONN.value().rollback(), SQLException.class).error());
             log("Rolled back transaction Successfully");
             throw new RuntimeException(runtimeExceptionMessage);
         }

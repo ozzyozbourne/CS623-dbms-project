@@ -34,9 +34,10 @@ public final class TransactionsOsaid {
         logCurrentStateOfTableStock(STMT);
 
         log(TRANSACTION_1);
-        var res = Try.ThrowSupplier.apply(() -> STMT.execute(TRANSACTION_1), SQLException.class);
-        assertNull(res.error());
-        log("Deleted Successfully");
+        final Try.Result<Integer, SQLException> res = Try.ThrowSupplier
+                .apply(() -> STMT.executeUpdate(TRANSACTION_1), SQLException.class);
+        DB.rollbackOnError(res, "Unable to Delete data from table Product");
+        log(String.format("Number of rows %d affected", res.value()));
 
         this.db.commitTransactions();
         log("State of tables Product and Stock after transaction 1");
@@ -51,9 +52,10 @@ public final class TransactionsOsaid {
         logCurrentStateOfTableStock(STMT);
 
         log(TRANSACTION_2);
-        var res = Try.ThrowSupplier.apply(() -> STMT.execute(TRANSACTION_2), SQLException.class);
-        assertNull(res.error());
-        log("Deleted Successfully");
+        final Try.Result<Integer, SQLException> res = Try.ThrowSupplier
+                .apply(() -> STMT.executeUpdate(TRANSACTION_2), SQLException.class);
+        DB.rollbackOnError(res, "Unable to Delete data from table Product");
+        log(String.format("Number of rows %d affected", res.value()));
 
         this.db.commitTransactions();
         log("State of tables Depot and Stock after transaction 2");
