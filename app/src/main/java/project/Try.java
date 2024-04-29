@@ -2,13 +2,17 @@ package project;
 
 public final class Try {
 
-    public record Result<R, E extends Exception>(R value, E error){}
-    public record ResultException<E extends Exception>(E error){}
+    public record Result<R, E extends Exception>(R value, E error) {
+    }
 
-    private Try(){}
+    public record ResultException<E extends Exception>(E error) {
+    }
+
+    private Try() {
+    }
 
     @FunctionalInterface
-    public interface ThrowSupplier<R>  {
+    public interface ThrowSupplier<R> {
 
         R compute() throws Exception;
 
@@ -24,11 +28,11 @@ public final class Try {
     }
 
     @FunctionalInterface
-    public interface ThrowConsumer{
+    public interface ThrowConsumer {
 
         void compute() throws Exception;
 
-        static <E extends Exception> ResultException<E> apply(final ThrowConsumer tc, final Class<E> e){
+        static <E extends Exception> ResultException<E> apply(final ThrowConsumer tc, final Class<E> e) {
             ResultException<E> r;
             try {
                 tc.compute();

@@ -13,7 +13,6 @@ import project.utils.DB;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.testng.Assert.assertNull;
 import static project.utils.CustomLogger.*;
 
 @Epic("CS 623 Project")
