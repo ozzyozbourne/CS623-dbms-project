@@ -50,7 +50,7 @@ public final class TransactionsSharukh {
         log("State of tables Depot and Stock before transaction 2");
         logCurrentStateOfTableDepot(STMT);
         logCurrentStateOfTableStock(STMT);
-
+    
         log(TRANSACTION_2);
         var res = Try.ThrowSupplier.apply(() -> STMT.execute(TRANSACTION_2), SQLException.class);
         assertNull(res.error());

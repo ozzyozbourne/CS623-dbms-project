@@ -17,12 +17,14 @@ public interface Constants {
     String CREATE_CONSTRAINTS_PRODUCT_PRIMARY_KEY = """
             ALTER TABLE Product
             ADD CONSTRAINT pk_product
-            PRIMARY KEY(prodid);""";
+            PRIMARY KEY(prodid);
+            """;
 
     String CREATE_CONSTRAINTS_PRODUCT_PRODUCT_PRICE = """
             ALTER TABLE Product
             ADD CONSTRAINT ck_product_price
-            CHECK(price > 0);""";
+            CHECK(price > 0);
+            """;
 
     String CREATE_TABLE_DEPOT = """
            CREATE TABLE Depot(
@@ -34,12 +36,14 @@ public interface Constants {
     String CREATE_CONSTRAINTS_DEPOT_PRIMARY_KEY = """
             ALTER TABLE Depot
             ADD CONSTRAINT pk_depot
-            PRIMARY KEY(depid);""";
+            PRIMARY KEY(depid);
+            """;
 
     String CREATE_CONSTRAINTS_DEPOT_VOLUME = """
             ALTER TABLE Depot
             ADD CONSTRAINT ck_depot_volume
-            CHECK(volume > 0);""";
+            CHECK(volume > 0);
+            """;
 
     String CREATE_TABLE_STOCK = """
             CREATE TABLE Stock(
@@ -51,21 +55,24 @@ public interface Constants {
     String CREATE_CONSTRAINTS_STOCK_PRIMARY_KEY = """
             ALTER TABLE Stock
             ADD CONSTRAINT pk_stock
-            PRIMARY KEY(prodid, depid);""";
+            PRIMARY KEY(prodid, depid);
+            """;
 
     String CREATE_CONSTRAINTS_STOCK_FOREIGN_KEY_STOCK_PRODUCT = """
             ALTER TABLE Stock
             ADD CONSTRAINT fk_stock_product
             FOREIGN KEY(prodid) REFERENCES Product(prodid)
             ON DELETE CASCADE
-            ON UPDATE CASCADE;""";
+            ON UPDATE CASCADE;
+            """;
 
     String CREATE_CONSTRAINTS_STOCK_FOREIGN_KEY_STOCK_DEPOT = """
             ALTER TABLE Stock
             ADD CONSTRAINT fk_stock_depot
             FOREIGN KEY(depid) REFERENCES Depot(depid)
             ON DELETE CASCADE
-            ON UPDATE CASCADE;""";
+            ON UPDATE CASCADE;
+            """;
 
     String DROP_TABLE_PRODUCT =
             "DROP TABLE Product CASCADE";
@@ -86,14 +93,16 @@ public interface Constants {
             VALUES
             	('p1', 'tape', 2.5),
             	('p2', 'tv',   250),
-            	('p3', 'vcr',  80);""";
+            	('p3', 'vcr',  80);
+            """;
 
     String POPULATE_DEPOT = """
             INSERT INTO Depot(depid, addr, volume)
             VALUES
             	('d1', 'New York', 9000),
             	('d2', 'Syracuse', 6000),
-            	('d4', 'New York', 2000);""";
+            	('d4', 'New York', 2000);
+            """;
 
     String POPULATE_STOCK = """
             INSERT INTO Stock(prodid, depid, quantity)
@@ -105,7 +114,8 @@ public interface Constants {
             	('p3', 'd4', 2000),
             	('p2', 'd4', 1500),
             	('p2', 'd1', -400),
-            	('p2', 'd2', 2000);""";
+            	('p2', 'd2', 2000);
+            """;
 
     String ALL_PRODUCTS = "SELECT * FROM Product";
     String ALL_DEPOTS = "SELECT * FROM Stock";
@@ -121,8 +131,7 @@ public interface Constants {
                         .toFile()), IOException.class);
         if(res.error() != null) throw new RuntimeException(res.error().getMessage());
         final Properties prop = new Properties();
-        final Try.ResultException<IOException> proRes = Try.ThrowConsumer
-                .apply(() -> prop.load(res.value()), IOException.class);
+        final Try.ResultException<IOException> proRes = Try.ThrowConsumer.apply(() -> prop.load(res.value()), IOException.class);
         if(proRes.error() != null) throw new RuntimeException(proRes.error().getMessage());
         return prop.getProperty(key);
     }

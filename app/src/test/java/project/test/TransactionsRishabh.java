@@ -84,7 +84,7 @@ public final class TransactionsRishabh {
     }
 
     @BeforeSuite(description = "Setting up connection singleton")
-    final void setUpConnectionSingleton(){
+    void setUpConnectionSingleton(){
         var init =  DB.INSTANCE; // init variable required, since java doesn't allow _ = DB.INSTANCE
     }
 

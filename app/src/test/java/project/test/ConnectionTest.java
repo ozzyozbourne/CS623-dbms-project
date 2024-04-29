@@ -16,8 +16,6 @@ import static org.testng.Assert.assertFalse;
 public final class ConnectionTest extends Base {
 
     @Test(description = "Checking to see if connection is established")
-    void testConnection(){
-        assertFalse(Try.ThrowSupplier.apply(() -> CONN.isClosed(), SQLException.class).value());
-    }
+    void testConnection(){assertFalse(Try.ThrowSupplier.apply(() -> CONN.isClosed(), SQLException.class).value());}
 
 }
