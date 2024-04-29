@@ -42,12 +42,12 @@ public final class TransactionsRishabh {
         log(TRANSACTION_1_1);
         var res = Try.ThrowSupplier
                 .apply(() -> STMT.executeUpdate(TRANSACTION_1_1), SQLException.class);
-        DB.rollbackOnError(res, "Unable to Delete data from table Product");
+        DB.rollbackOnError(res, "Unable to Insert data from table Product");
         log(String.format("Number of rows %d affected", res.value()));
 
         log(TRANSACTION_1_2);
         res = Try.ThrowSupplier.apply(() -> STMT.executeUpdate(TRANSACTION_1_2), SQLException.class);
-        DB.rollbackOnError(res, "Unable to Delete data from table Product");
+        DB.rollbackOnError(res, "Unable to Insert data from table Product");
         log(String.format("Number of rows %d affected", res.value()));
 
         this.db.commitTransactions();
@@ -64,12 +64,12 @@ public final class TransactionsRishabh {
 
         log(TRANSACTION_2_1);
         var res = Try.ThrowSupplier.apply(() -> STMT.executeUpdate(TRANSACTION_2_1), SQLException.class);
-        DB.rollbackOnError(res, "Unable to Delete data from table Product");
+        DB.rollbackOnError(res, "Unable to Insert data from table Product");
         log(String.format("Number of rows %d affected", res.value()));
 
         log(TRANSACTION_2_2);
         res = Try.ThrowSupplier.apply(() -> STMT.executeUpdate(TRANSACTION_2_2), SQLException.class);
-        DB.rollbackOnError(res, "Unable to Delete data from table Product");
+        DB.rollbackOnError(res, "Unable to Insert data from table Product");
         log(String.format("Number of rows %d affected", res.value()));
 
         this.db.commitTransactions();
