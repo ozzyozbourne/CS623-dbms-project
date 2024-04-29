@@ -5,6 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import project.Try;
+import project.utils.DB;
 
 import java.sql.SQLException;
 
@@ -25,7 +26,7 @@ public final class DeleteData extends Base {
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(DELETE_TABLE_STOCK), SQLException.class);
-        db.rollbackOnError(res, "Unable to Delete data from table Stock");
+        DB.rollbackOnError(res, "Unable to Delete data from table Stock");
 
         log("Deleted all data from Table Stock Successfully");
     }
@@ -38,7 +39,7 @@ public final class DeleteData extends Base {
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(DELETE_TABLE_PRODUCT), SQLException.class);
-        db.rollbackOnError(res, "Unable to Delete data from table Product");
+        DB.rollbackOnError(res, "Unable to Delete data from table Product");
 
         log("Deleted all data from Product Table Successfully");
     }
@@ -51,7 +52,7 @@ public final class DeleteData extends Base {
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(DELETE_TABLE_DEPOT), SQLException.class);
-        db.rollbackOnError(res, "Unable to Delete data from table Depot");
+        DB.rollbackOnError(res, "Unable to Delete data from table Depot");
 
         log("Deleted all data from Table Depot Successfully");
     }

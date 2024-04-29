@@ -5,6 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.testng.annotations.*;
 import project.Try;
+import project.utils.DB;
 
 import java.sql.SQLException;
 
@@ -24,7 +25,7 @@ public final class CreateTables extends Base{
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_TABLE_PRODUCT), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Product");
+        DB.rollbackOnError(res, "Unable to create table Product");
 
         log("Created Product Table Successfully");
     }
@@ -37,13 +38,13 @@ public final class CreateTables extends Base{
         var res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_CONSTRAINTS_PRODUCT_PRIMARY_KEY), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Primary key Product Constraint");
+        DB.rollbackOnError(res, "Unable to create table Primary key Product Constraint");
         log(CREATE_CONSTRAINTS_PRODUCT_PRODUCT_PRICE);
 
         res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_CONSTRAINTS_PRODUCT_PRODUCT_PRICE), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Product Product Price Constraint");
+        DB.rollbackOnError(res, "Unable to create table Product Product Price Constraint");
         log("Created table Product Constraints Successfully");
     }
 
@@ -55,7 +56,7 @@ public final class CreateTables extends Base{
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_TABLE_DEPOT), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Depot");
+        DB.rollbackOnError(res, "Unable to create table Depot");
 
         log("Created Depot Table Successfully");
     }
@@ -68,13 +69,13 @@ public final class CreateTables extends Base{
         var res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_CONSTRAINTS_DEPOT_PRIMARY_KEY), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Depot Primary key Constraint");
+        DB.rollbackOnError(res, "Unable to create table Depot Primary key Constraint");
 
         log(CREATE_CONSTRAINTS_DEPOT_VOLUME);
         res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_CONSTRAINTS_DEPOT_VOLUME), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Depot Volume Constraint");
+        DB.rollbackOnError(res, "Unable to create table Depot Volume Constraint");
 
         log("Created table Depot Constraints Successfully");
     }
@@ -87,7 +88,7 @@ public final class CreateTables extends Base{
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_TABLE_STOCK), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Stock");
+        DB.rollbackOnError(res, "Unable to create table Stock");
 
         log("Created Stock Table Successfully");
     }
@@ -100,19 +101,19 @@ public final class CreateTables extends Base{
         var res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_CONSTRAINTS_STOCK_PRIMARY_KEY), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Stock Primary key Product Constraint");
+        DB.rollbackOnError(res, "Unable to create table Stock Primary key Product Constraint");
 
         log(CREATE_CONSTRAINTS_STOCK_FOREIGN_KEY_STOCK_PRODUCT);
         res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_CONSTRAINTS_STOCK_FOREIGN_KEY_STOCK_PRODUCT), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Stock ForeignKey Stock to Product Constraint");
+        DB.rollbackOnError(res, "Unable to create table Stock ForeignKey Stock to Product Constraint");
 
         log(CREATE_CONSTRAINTS_STOCK_FOREIGN_KEY_STOCK_DEPOT);
         res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(CREATE_CONSTRAINTS_STOCK_FOREIGN_KEY_STOCK_DEPOT), SQLException.class);
-        db.rollbackOnError(res, "Unable to create table Stock ForeignKey Stock to Depot Constraint");
+        DB.rollbackOnError(res, "Unable to create table Stock ForeignKey Stock to Depot Constraint");
 
         log("Created table Stock Constraints Successfully");
     }
