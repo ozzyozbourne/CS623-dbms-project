@@ -13,7 +13,6 @@ import project.utils.DB;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.testng.Assert.assertNull;
 import static project.utils.CustomLogger.*;
 import static project.utils.CustomLogger.logCurrentStateOfTableStock;
 
@@ -25,12 +24,12 @@ public final class TransactionsRishabh {
     private DB db;
     private Statement STMT;
 
-    private final String TRANSACTION_1_1 = "INSERT INTO Product(prodid, pname, price) VALUES ('p100', 'cd', 5);";
-    private final String TRANSACTION_1_2 = "INSERT INTO Stock(prodid, depid, quantity) VALUES ('p100', 'd2', 50);";
+    private static final String TRANSACTION_1_1 = "INSERT INTO Product(prodid, pname, price) VALUES ('p100', 'cd', 5);";
+    private static final String TRANSACTION_1_2 = "INSERT INTO Stock(prodid, depid, quantity) VALUES ('p100', 'd2', 50);";
 
 
-    private final String TRANSACTION_2_1 = "INSERT INTO Depot(depid, addr, volume) VALUES ('d100', 'Chicago', 100);";
-    private final String TRANSACTION_2_2 = "INSERT INTO Stock(prodid, depid, quantity) VALUES ('p1', 'd100', 100);";
+    private static final String TRANSACTION_2_1 = "INSERT INTO Depot(depid, addr, volume) VALUES ('d100', 'Chicago', 100);";
+    private static final String TRANSACTION_2_2 = "INSERT INTO Stock(prodid, depid, quantity) VALUES ('p1', 'd100', 100);";
 
 
     @Test(description = "Transaction 1")

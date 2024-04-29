@@ -13,7 +13,6 @@ import project.utils.DB;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.testng.Assert.assertNull;
 import static project.utils.CustomLogger.*;
 import static project.utils.CustomLogger.logCurrentStateOfTableStock;
 
@@ -25,8 +24,8 @@ public final class TransactionsSharukh {
     private DB db;
     private Statement STMT;
 
-    private final String TRANSACTION_1 = "UPDATE Product SET prodid = 'pp1' WHERE prodid = 'p1';";
-    private final String TRANSACTION_2 = "UPDATE Depot SET depid = 'dd1' WHERE depid = 'd1';";
+    private static final String TRANSACTION_1 = "UPDATE Product SET prodid = 'pp1' WHERE prodid = 'p1';";
+    private static final String TRANSACTION_2 = "UPDATE Depot SET depid = 'dd1' WHERE depid = 'd1';";
 
     @Test(description = "Transaction 1")
     void doTransaction1(){

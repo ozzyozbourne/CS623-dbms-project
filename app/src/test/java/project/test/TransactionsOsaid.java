@@ -13,7 +13,6 @@ import project.utils.DB;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.testng.Assert.assertNull;
 import static project.utils.CustomLogger.*;
 
 @Epic("CS 623 Project")
@@ -24,8 +23,8 @@ public final class TransactionsOsaid {
     private DB db;
     private Statement STMT;
 
-    private final String TRANSACTION_1 = "DELETE FROM Product WHERE prodid = 'p1';";
-    private final String TRANSACTION_2 = "DELETE FROM Depot WHERE depid = 'd1';";
+    private static final String TRANSACTION_1 = "DELETE FROM Product WHERE prodid = 'p1';";
+    private static final String TRANSACTION_2 = "DELETE FROM Depot WHERE depid = 'd1';";
 
     @Test(description = "Transaction 1")
     void doTransaction1(){
@@ -70,7 +69,7 @@ public final class TransactionsOsaid {
     }
 
     @BeforeSuite(description = "Setting up connection singleton")
-    final void setUpConnectionSingleton(){
+    void setUpConnectionSingleton(){
         var init =  DB.INSTANCE; // init variable required, since java doesn't allow _ = DB.INSTANCE
     }
 

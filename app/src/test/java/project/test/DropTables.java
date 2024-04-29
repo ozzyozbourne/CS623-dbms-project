@@ -5,6 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.testng.annotations.Test;
 import project.Try;
+import project.utils.DB;
 
 import java.sql.SQLException;
 
@@ -24,7 +25,7 @@ public final class DropTables extends Base{
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(DROP_TABLE_PRODUCT), SQLException.class);
-        db.rollbackOnError(res, "Unable to drop table Product");
+        DB.rollbackOnError(res, "Unable to drop table Product");
 
         log("Dropped Product Table Successfully");
     }
@@ -37,7 +38,7 @@ public final class DropTables extends Base{
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(DROP_TABLE_DEPOT), SQLException.class);
-        db.rollbackOnError(res, "Unable to drop table Depot");
+        DB.rollbackOnError(res, "Unable to drop table Depot");
 
         log("Dropped Depot Table Successfully");
     }
@@ -50,7 +51,7 @@ public final class DropTables extends Base{
         final Try.Result<Boolean, SQLException> res = Try
                 .ThrowSupplier
                 .apply(() -> STMT.execute(DROP_TABLE_STOCK), SQLException.class);
-        db.rollbackOnError(res, "Unable to drop table Stock");
+        DB.rollbackOnError(res, "Unable to drop table Stock");
 
         log("Dropped Stock Table Successfully");
     }
